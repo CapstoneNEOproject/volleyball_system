@@ -1,3 +1,5 @@
+from django.utils import timezone
+from datetime import timedelta
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
@@ -10,6 +12,6 @@ class GameViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        if self.request.user.role == 'referee':
-            return Game.objects.filter(referee=self.request.user)
-        return Game.objects.all()
+        today = timezone.now().date()
+        next_month = today + timedelta(days=30)
+        return Game.objects.filter(date__range =(today, next_month))
