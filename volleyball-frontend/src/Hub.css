@@ -1,0 +1,154 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Loading Screen */
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #fff;
+    color: #ff0000;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 8px solid #ffcccc;
+    border-top: 8px solid #ff0000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hub Container */
+.hub-container {
+    color: #333;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(120deg, #ff0000, #cc0000);
+    color: #fff;
+    padding: 3rem 1rem;
+    text-align: center;
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.hero-button {
+    background-color: #fff;
+    color: #ff0000;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #ffcccc;
+    color: #cc0000;
+}
+
+/* Navigation Links */
+.navigation {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    background-color: #f7f7f7;
+}
+
+.nav-link {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #cc0000;
+}
+
+.nav-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #cc0000;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Content Section */
+.content-section {
+    padding: 2rem 1rem;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: #ff0000;
+    margin-bottom: 1rem;
+}
+
+.content-section p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #ff0000;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
