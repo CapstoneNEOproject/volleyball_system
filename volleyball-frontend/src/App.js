@@ -7,7 +7,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Admin from "./components/Admin";
-import AdminGameAdd from "./components/AdminGameAdd";
+import AdminGameAdd from "./components/AdminGameAdd,js";
 import "./App.css";
 
 function App() {
