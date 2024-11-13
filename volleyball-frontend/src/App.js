@@ -7,6 +7,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Admin from "./components/Admin";
+import AdminGameAdd from "./components/AdminGameAdd";
 import "./App.css";
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
           <nav>
             <Link to="/">Home</Link> | <Link to="/schedule">Schedule</Link> |{" "}
             <Link to="/about">About</Link> | <Link to="/contact">Contact</Link>{" "}
-            | <Link to="/login">Login</Link>
+            | <Link to="/login">Login</Link> | <Link to="/signup">Signup</Link>
           </nav>
         </header>
         <Routes>

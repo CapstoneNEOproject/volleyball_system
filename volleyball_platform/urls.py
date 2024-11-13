@@ -23,4 +23,5 @@ urlpatterns = [
     path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('api/scheduling', include('scheduling.urls')),
+    path('api/register/', register_user, name='register_user'),
 ]

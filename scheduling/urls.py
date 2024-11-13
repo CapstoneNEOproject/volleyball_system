@@ -8,4 +8,5 @@ router.register(r'games', GameViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('games/upcoming/', GameViewSet.as_view({'get': 'upcoming_games'}), name='upcoming-games')
 ]
