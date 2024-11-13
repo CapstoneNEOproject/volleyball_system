@@ -1,12 +1,14 @@
 from django.db import models
-from users.models import Team, User
+from django.contrib.auth import get_user_model
 
-# Create your models here.
+User = get_user_model()
+
+class Team(models.Model):
+    name = models.CharField(max_length=50)
+    members = models.ManyToManyField(User, related_name="teams")
 
 class Game(models.Model):
-    team1 = models.ForeignKey(Team, related_name='team1_games', on_delete=models.CASCADE)
-    team2 = models.ForeignKey(Team, related_name='team2_games', on_delete=models.CASCADE)
     date = models.DateTimeField()
+    team1 = models.ForeignKey(Team, related_name="home_games", on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Team, related_name="away_games", on_delete=models.CASCADE)
     location = models.CharField(max_length=100)
-    referee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    is_completed = models.BooleanField(default=False)
