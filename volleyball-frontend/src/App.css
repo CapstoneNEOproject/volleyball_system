@@ -15,6 +15,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.main-content {
+  padding-top: 80px; /* Offset for fixed header */
+}
+
+
 /* Page transitions */
 .page-enter {
   opacity: 0;
