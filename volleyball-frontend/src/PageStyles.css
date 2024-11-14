@@ -54,7 +54,7 @@ p {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem 0rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,10 +73,13 @@ p {
   .header-logo {
     font-size: 1.5rem;
     font-weight: bold;
+    margin-left: 2rem;
   }
   
+
   .header-nav a {
-    margin: 0 1rem;
+    margin: 1rem;
+    
     text-decoration: none;
     color: inherit;
     transition: color 0.2s;
