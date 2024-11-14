@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './Hub.css';  // Import CSS file for styling
+import '././Hub.css';  // Import CSS file for styling
 
 const Hub = () => {
     const [loading, setLoading] = useState(true);
