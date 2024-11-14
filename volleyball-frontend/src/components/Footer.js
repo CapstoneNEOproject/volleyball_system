@@ -1,6 +1,9 @@
 // src/components/Footer.js
 import React from "react";
 import "../PageStyles.css";
+import { ReactComponent as FacebookIcon } from "../assets/facebook.svg";
+import { ReactComponent as TwitterIcon } from "../assets/twitter.svg";
+import { ReactComponent as InstagramIcon } from "../assets/instagram.svg";
 
 function Footer() {
   return (
@@ -13,14 +16,17 @@ function Footer() {
           <a href="/schedule">Schedule</a>
         </div>
         <div className="footer-social">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            Facebook
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-button">
+            <FacebookIcon />
+            <span>Facebook</span>
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            Twitter
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-button">
+            <TwitterIcon />
+            <span>Twitter</span>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            Instagram
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-button">
+            <InstagramIcon />
+            <span>Instagram</span>
           </a>
         </div>
       </div>

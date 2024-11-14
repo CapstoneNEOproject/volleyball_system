@@ -77,18 +77,34 @@ p {
   }
   
 
-  .header-nav a {
-    margin: 1rem;
-    
+  .header-nav .nav-link {
+    margin: 0 1rem;
     text-decoration: none;
     color: inherit;
-    transition: color 0.2s;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
   }
   
-  .header-nav a:hover,
-  .header-nav .active {
+  .header-nav .nav-link:hover {
+    color: #ff5722;
+    transform: translateY(-3px);
+  }
+  
+  .header-nav .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ff5722;
+    transition: width 0.3s ease;
+  }
+  
+  .header-nav .nav-link.active {
     color: #ff5722;
   }
+  
 
   /* src/components/Footer.css */
 .footer {
@@ -108,21 +124,41 @@ p {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
-  
-  .footer-links a,
-  .footer-social a {
+
+  .footer-links a {
     color: #ddd;
     margin: 0.5rem;
     text-decoration: none;
   }
-  
-  .footer-links a:hover,
-  .footer-social a:hover {
+  .footer-links a:hover {
     color: #ff5722;
   }
   
-  .footer-bottom {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: #888;
+  .footer-social .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #444;
+    color: #ddd;
+    padding: 0.5rem 1.5rem;
+    margin: 0.5rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
   }
+  
+  .footer-social .social-button svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    fill: currentColor;
+  }
+  
+  .footer-social .social-button:hover {
+    background-color: #ff5722;
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 87, 34, 0.3);
+  }
+  

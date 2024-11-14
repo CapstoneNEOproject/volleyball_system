@@ -19,19 +19,19 @@ function Header() {
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-logo">Northeast Ohio Volleyball Platform</div>
       <nav className="header-nav">
-        <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+        <Link to="/" className={`nav-link ${location.pathname === "/" ? "active" : ""}`}>
           Home
         </Link>
-        <Link to="/schedule" className={location.pathname === "/schedule" ? "active" : ""}>
+        <Link to="/schedule" className={`nav-link ${location.pathname === "/schedule" ? "active" : ""}`}>
           Schedule
         </Link>
-        <Link to="/about" className={location.pathname === "/about" ? "active" : ""}>
+        <Link to="/about" className={`nav-link ${location.pathname === "/about" ? "active" : ""}`}>
           About
         </Link>
-        <Link to="/contact" className={location.pathname === "/contact" ? "active" : ""}>
+        <Link to="/contact" className={`nav-link ${location.pathname === "/contact" ? "active" : ""}`}>
           Contact
         </Link>
-        <Link to="/login" className={location.pathname === "/login" ? "active" : ""}>
+        <Link to="/login" className={`nav-link ${location.pathname === "/login" ? "active" : ""}`}>
           Login
         </Link>
       </nav>
