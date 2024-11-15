@@ -47,6 +47,12 @@ p {
 
 .login-form button:hover {
     background-color: #cc0000;
+
+}
+
+
+.new-account{
+  max-width: 200px;
 }
 
 /* src/components/Header.css */
@@ -78,7 +84,7 @@ p {
   
 
   .header-nav a {
-    margin: 1rem;
+    margin: 0.8rem;
     
     text-decoration: none;
     color: inherit;
