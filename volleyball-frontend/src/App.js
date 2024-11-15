@@ -28,7 +28,7 @@ function App() {
           <Route path="/admin" element={<Admin />} />
         </Routes>
         </main>
-        <Footer />
+        <Footer/>
       </div>
     </Router>
   );
