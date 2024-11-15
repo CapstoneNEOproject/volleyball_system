@@ -17,10 +17,10 @@ function Header() {
       </div>
       <nav className={`nav ${menuOpen ? 'open' : ''}`}>
         <ul>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#login">Login</a></li>
+          <li><a href="/schedule">Schedule</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/login">Login</a></li>
         </ul>
       </nav>
       <div className="hamburger" onClick={handleMenuToggle}>
