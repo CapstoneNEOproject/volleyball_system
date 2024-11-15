@@ -27,6 +27,7 @@ const Login = () => {
       <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         <input
+          className="email"
           type="email"
           placeholder="Email"
           value={email}
@@ -34,17 +35,14 @@ const Login = () => {
           required
         />
         <input
+          className="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {/* <a href="Signup"><i><b>Create new account?</b></i></a> */}
-        <Link to="/signup" className="new-account">
-          <i><b>Create new account?</b></i>
-        </Link>
-        
+        <a href="/signup" className="new-account"><i><b>Create new account?</b></i></a>
         <button type="submit">Login</button>
       </form>
     </div>
