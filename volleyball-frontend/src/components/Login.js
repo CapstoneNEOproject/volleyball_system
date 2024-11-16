@@ -15,7 +15,7 @@ const Login = () => {
     alert("Login form submitted!");
     console.log(email, password);
     // Add authentication logic here
-    
+
     // clearing up the form
     setEmail("");
     setPassword("");
@@ -26,24 +26,28 @@ const Login = () => {
     <div className="page-container">
       <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
-        <input
-          className="email"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="input-group">
+          <input
+            className="email"
+            type="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <label htmlFor="">Email</label>
+        </div>
+        <div className="input-group">
+          <input
+            className="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <label htmlFor="">Password</label>
+        </div>
         <a href="/signup" className="new-account"><i><b>Create new account?</b></i></a>
-        <button type="submit">Login</button>
+        <button type="submit" className="submit-it">Login</button>
       </form>
     </div>
   );
