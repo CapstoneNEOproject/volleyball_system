@@ -32,7 +32,7 @@ const Signup = () => {
     <div className="signup">
       <h2>Signup</h2>
       {message && <p>{message}</p>}
-      <form onSubmit={handleSignup}>
+      <form onSubmit={handleSignup} className="signup-form">
         <div>
           <label>Username:</label>
           <input
@@ -60,6 +60,7 @@ const Signup = () => {
             required
           />
         </div>
+        <a href="/login"><i><b>Already have an account?</b></i></a>
         <button type="submit">Signup</button>
       </form>
     </div>
