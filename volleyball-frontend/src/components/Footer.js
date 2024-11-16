@@ -17,9 +17,13 @@ function Footer() {
         <div className="footer-center">
           <TwitterIcon className="social-icon" />
           <span className="divider">/</span>
+          <a href="https://www.facebook.com/groups/570375109793016/" target="_blank" rel="noopener noreferrer">
           <FacebookIcon className="social-icon" />
+          </a>
           <span className="divider">/</span>
+          <a href="https://www.instagram.com/neoathletics/?hl=en" target="_blank" rel="noopener noreferrer">
           <InstagramIcon className="social-icon" />
+          </a>
         </div>
         
         <div className="footer-bottom">

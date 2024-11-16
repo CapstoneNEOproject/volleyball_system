@@ -34,11 +34,11 @@ function Header() {
           <li className={window.location.hash === '#about' ? 'active' : ''}>
             <a href="/about">About</a>
           </li>
-          <li className={window.location.hash === '#contact' ? 'active' : ''}>
-            <a href="/contact">Contact Us</a>
-          </li>
           <li className={window.location.hash === '#schedule' ? 'active' : ''}>
             <a href="/schedule">Schedule</a>
+          </li>
+          <li className={window.location.hash === '#contact' ? 'active' : ''}>
+            <a href="/contact">Contact Us</a>
           </li>
           <li className={window.location.hash === '#login' ? 'active' : ''}>
             <a href="/login">Login</a>
