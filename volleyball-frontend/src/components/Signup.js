@@ -26,6 +26,9 @@ const Signup = () => {
       setMessage("Signup failed. Please try again.");
       console.error("Error during signup:", error);
     }
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
