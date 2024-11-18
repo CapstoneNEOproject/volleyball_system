@@ -26,40 +26,49 @@ const Signup = () => {
       setMessage("Signup failed. Please try again.");
       console.error("Error during signup:", error);
     }
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
 
   return (
     <div className="signup">
-      <h2>Signup</h2>
+      <h2>Register</h2>
       {message && <p>{message}</p>}
-      <form onSubmit={handleSignup}>
-        <div>
-          <label>Username:</label>
+      <form onSubmit={handleSignup} className="signup-form">
+        <div className="input-group">
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-          />
+            />
+            <label htmlFor="">Username</label>
         </div>
-        <div>
-          <label>Email:</label>
+        <div className="input-group">
+     
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <label htmlFor="">Email</label>
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="input-group">
+          
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <label htmlFor="">Password</label>
         </div>
+        <a href="/login" className="login"><i><b>Already have an account?</b></i></a>
         <button type="submit">Signup</button>
       </form>
     </div>
