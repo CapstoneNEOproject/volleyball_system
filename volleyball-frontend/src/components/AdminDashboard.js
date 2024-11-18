@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminDashboard = () => {
-  const [analytics, setAnalytics] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [analytics, setAnalytics] = useState(null); // Analytics data
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
-    const fetchAdminData = async () => {
+    const fetchAnalytics = async () => {
       try {
         const response = await axios.get(
           "http://127.0.0.1:8000/api/analytics/admin/",
@@ -17,19 +18,20 @@ const AdminDashboard = () => {
           }
         );
         setAnalytics(response.data);
-      } catch (error) {
-        console.error("Error fetching admin analytics:", error);
+      } catch (err) {
+        console.error("Error fetching admin analytics:", err);
+        setError("Failed to load analytics data.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAdminData();
+    fetchAnalytics();
   }, []);
 
-  if (loading) {
-    return <p>Loading admin dashboard...</p>;
-  }
+  if (loading) return <p>Loading admin dashboard...</p>;
+  if (error) return <p>{error}</p>;
+  if (!analytics) return <p>No analytics data available.</p>;
 
   return (
     <div>
