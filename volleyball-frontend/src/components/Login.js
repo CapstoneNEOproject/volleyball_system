@@ -34,6 +34,9 @@ const Login = () => {
     // clearing up the form
     setEmail("");
     setPassword("");
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
 
   };
 

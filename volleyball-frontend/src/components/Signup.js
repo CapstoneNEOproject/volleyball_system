@@ -29,6 +29,9 @@ const Signup = () => {
     setUsername("");
     setEmail("");
     setPassword("");
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
 
   return (
