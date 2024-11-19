@@ -7,16 +7,18 @@ from datetime import datetime, timedelta
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-
+#check if user is admin
 class IsAdminUser(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.role == 'admin'
 
+#CRUD for teams. restricted to admins only
 class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
     permission_classes = [IsAdminUser]
 
+#CRUD for games. restricted to admins only
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
@@ -24,10 +26,7 @@ class GameViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], permission_classes=[permissions.IsAuthenticated])
     def upcoming_games(self, request):
-        """
-        Returns games scheduled within the next 3 months.
-        If no games exist, returns a blank calendar-like response.
-        """
+       #return games for the next three months. return empty calendar otherwise
         today = datetime.now()
         three_months_later = today + timedelta(days=90)
         games = Game.objects.filter(date__gte=today, date__lte=three_months_later).order_by('date')
@@ -46,18 +45,14 @@ class GameViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(games, many=True)
         return Response(serializer.data)
 
+#admin controls for managing games, assigns referees and teams
 class GameAdminViewSet(viewsets.ViewSet):
-    """
-    Admin-specific operations for managing games, including adding referees and teams.
-    """
+    
     permission_classes = [IsAdminUser]
 
     @action(detail=True, methods=['post'])
     def assign_referee(self, request, pk=None):
-        """
-        Assign a referee to a game.
-        Request data must include 'referee_id'.
-        """
+       #assign referee to a game
         try:
             game = Game.objects.get(pk=pk)
             referee_id = request.data.get('referee_id')
@@ -72,10 +67,7 @@ class GameAdminViewSet(viewsets.ViewSet):
 
     @action(detail=True, methods=['post'])
     def assign_teams(self, request, pk=None):
-        """
-        Assign teams to a game.
-        Request data must include 'team1_id' and 'team2_id'.
-        """
+       #assign two teams to a game
         try:
             game = Game.objects.get(pk=pk)
             team1_id = request.data.get('team1_id')

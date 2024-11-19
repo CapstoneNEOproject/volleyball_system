@@ -3,6 +3,7 @@ from .views import register_user, PromoteToRefereeView
 from rest_framework.routers import DefaultRouter
 from .views import GameViewSet, TeamViewSet, GameAdminViewSet
 
+#automatically generate routes for viewsets
 router = DefaultRouter()
 router.register(r'games', GameViewSet, basename='game')
 router.register(r'teams', TeamViewSet, basename='team')

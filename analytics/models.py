@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from scheduling.models import Game, Team
 
 User = get_user_model()
-
+#track attendence of a user for games they participate in
 class Attendance(models.Model):
     game = models.ForeignKey(Game, related_name="attendances", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="attendances", on_delete=models.CASCADE)
@@ -11,7 +11,7 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.user.username} attended {self.game}"
-
+#tracks result of a specific game for team analyticsS
 class MatchResult(models.Model):
     game = models.OneToOneField(Game, related_name="result", on_delete=models.CASCADE)
     winning_team = models.ForeignKey(Team, related_name="wins", on_delete=models.CASCADE)

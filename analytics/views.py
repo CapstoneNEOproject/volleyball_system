@@ -5,6 +5,7 @@ from .models import Attendance, MatchResult
 from .serializers import AttendanceSerializer, MatchResultSerializer
 from scheduling.models import Team
 
+#analytics for players to view attendence and participation
 class PlayerAnalyticsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -16,6 +17,7 @@ class PlayerAnalyticsView(APIView):
         serializer = AttendanceSerializer(attendances, many=True)
         return Response(serializer.data)
 
+#analytics for referees to view their games and results
 class RefereeAnalyticsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -27,6 +29,7 @@ class RefereeAnalyticsView(APIView):
         serializer = MatchResultSerializer(MatchResult.objects.filter(game__in=games), many=True)
         return Response(serializer.data)
 
+#admin analytics to view team & referee attendence and performance data
 class AdminAnalyticsView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -40,7 +43,6 @@ class AdminAnalyticsView(APIView):
             "referees": [],
         }
 
-        # Team analytics
         for team in teams:
             total_games = team.home_games.count() + team.away_games.count()
             wins = team.wins.count()
@@ -55,7 +57,6 @@ class AdminAnalyticsView(APIView):
                 "attendance_count": attendance_count,
             })
 
-        # Referee analytics
         referees = User.objects.filter(role='referee')
         for referee in referees:
             games_officiated = Game.objects.filter(referee=referee).count()

@@ -8,9 +8,7 @@ from .serializers import UserSerializer
 
 @api_view(['POST'])
 def register_user(request):
-    """
-    Register a new user with the default role of 'player'.
-    """
+    #register a new user with default role set to player
     data = request.data
     data['role'] = 'player'  # Default role set to "player"
     serializer = UserSerializer(data=data)
@@ -22,9 +20,7 @@ def register_user(request):
 
 
 class PromoteToRefereeView(APIView):
-    """
-    Allow admins to promote a player to referee.
-    """
+    #allow admins to promote a referee. only admins are allowed to promote
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
