@@ -32,6 +32,8 @@ function App() {
             <Route path="/dashboard/player" element={<PlayerDashboard />} />
             <Route path="/dashboard/referee" element={<RefereeDashboard />} />
             <Route path="/dashboard/admin" element={<AdminDashboard />} />
+            <Route path="/admin/add-game" element={<AdminGameAdd />} />
+
           </Routes>
         </main>
         <Footer />
