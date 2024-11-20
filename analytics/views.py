@@ -4,7 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Attendance, MatchResult
 from .serializers import AttendanceSerializer, MatchResultSerializer
 from scheduling.models import Team
-
+from users.models import User
+from scheduling.models import Game
 #analytics for players to view attendence and participation
 class PlayerAnalyticsView(APIView):
     permission_classes = [IsAuthenticated]
