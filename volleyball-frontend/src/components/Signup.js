@@ -1,4 +1,3 @@
-// Signup.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -12,23 +11,39 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    // Basic client-side validation
+    if (!username || !email || password.length < 8) {
+      setMessage("All fields are required, and the password must be at least 8 characters.");
+      return;
+    }
+
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/register/", {
         username,
         password,
         email,
       });
+
       if (response.status === 201) {
         setMessage("Signup successful! Redirecting to login...");
         setTimeout(() => navigate("/login"), 2000);
+
+        // Reset fields after successful signup
+        setUsername("");
+        setEmail("");
+        setPassword("");
       }
     } catch (error) {
-      setMessage("Signup failed. Please try again.");
-      console.error("Error during signup:", error);
+      if (error.response && error.response.data) {
+        setMessage(error.response.data.message || "Signup failed. Please try again.");
+      } else {
+        setMessage("Signup failed. Please check your connection.");
+      }
+      console.error("Error during signup:", error.response || error.message);
     }
-    setUsername("");
-    setEmail("");
-    setPassword("");
+
+    // Clear message after 5 seconds
     setTimeout(() => {
       setMessage("");
     }, 5000);
@@ -45,11 +60,10 @@ const Signup = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            />
-            <label htmlFor="">Username</label>
+          />
+          <label htmlFor="">Username</label>
         </div>
         <div className="input-group">
-     
           <input
             type="email"
             value={email}
@@ -59,7 +73,6 @@ const Signup = () => {
           <label htmlFor="">Email</label>
         </div>
         <div className="input-group">
-          
           <input
             type="password"
             value={password}
@@ -68,7 +81,11 @@ const Signup = () => {
           />
           <label htmlFor="">Password</label>
         </div>
-        <a href="/login" className="login"><i><b>Already have an account?</b></i></a>
+        <a href="/login" className="login">
+          <i>
+            <b>Already have an account?</b>
+          </i>
+        </a>
         <button type="submit">Signup</button>
       </form>
     </div>

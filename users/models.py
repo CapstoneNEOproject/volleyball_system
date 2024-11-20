@@ -3,17 +3,18 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 
 class User(AbstractUser):
-    # Levels of user access
+    # User roles with predefined choices
     ROLE_CHOICES = [
         ('player', 'Player'),
         ('referee', 'Referee'),
         ('admin', 'Admin'),
     ]
-    
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='player')
+
+    # Optional biography for users
     bio = models.TextField(blank=True, null=True)
 
-    # Additional user profile choices
+    # User status with predefined choices
     STATUS_CHOICES = [
         ('available', 'Available'),
         ('injured', 'Injured'),
@@ -21,12 +22,13 @@ class User(AbstractUser):
     ]
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='available')
 
-    # Profile picture for users
+    # Profile picture for user accounts
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
 
-    # Many-to-many relationship for teams so players can be in multiple teams
+    # Many-to-many relationship for teams
     teams = models.ManyToManyField('Team', related_name='players', blank=True)
 
+    # Group relationships for permissions
     groups = models.ManyToManyField(
         Group,
         related_name='custom_user_set',
@@ -35,7 +37,7 @@ class User(AbstractUser):
         verbose_name='groups',
     )
 
-    # Many-to-many relationship for permissions
+    # Permissions relationships for custom permissions
     user_permissions = models.ManyToManyField(
         Permission,
         related_name='custom_user_set_permissions',
@@ -44,6 +46,7 @@ class User(AbstractUser):
         verbose_name='user permissions',
     )
 
+    # Helper methods for role checks
     def is_player(self):
         return self.role == 'player'
 
@@ -57,10 +60,20 @@ class User(AbstractUser):
         return self.username
 
 
-# Represents a team with a team name and a list of members
 class Team(models.Model):
-    name = models.CharField(max_length=50, unique=True)  # Ensure unique team names
+    # Team name must be unique
+    name = models.CharField(max_length=50, unique=True)
+
+    # Many-to-many relationship for team members
     members = models.ManyToManyField(User, related_name='user_teams')
 
     def __str__(self):
         return f"{self.name} ({self.members.count()} members)"
+
+    # Helper method to add a member to the team
+    def add_member(self, user):
+        self.members.add(user)
+
+    # Helper method to remove a member from the team
+    def remove_member(self, user):
+        self.members.remove(user)

@@ -78,7 +78,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React app
+    "http://localhost:3000", 
 ]
 
 TIME_ZONE = 'America/New_York'
