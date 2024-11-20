@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import register_user, PromoteToRefereeView
+from users.views import register_user, PromoteToRefereeView
 from rest_framework.routers import DefaultRouter
 from .views import GameViewSet, TeamViewSet, GameAdminViewSet
 
@@ -7,7 +7,7 @@ from .views import GameViewSet, TeamViewSet, GameAdminViewSet
 router = DefaultRouter()
 router.register(r'games', GameViewSet, basename='game')
 router.register(r'teams', TeamViewSet, basename='team')
-router.register(r'games', GameAdminViewSet, basename='game-admin')
+router.register(r'admin-games', GameAdminViewSet, basename='admin-games')
 
 urlpatterns = [
     path('', include(router.urls)),

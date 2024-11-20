@@ -6,7 +6,7 @@ User = get_user_model()
 #volleyball team with a name and list of members
 class Team(models.Model):
     name = models.CharField(max_length=50)
-    members = models.ManyToManyField(User, related_name="teams")
+    members = models.ManyToManyField(User, related_name="scheduling_teams")
 #return string representation of team
     def __str__(self):
         return self.name
