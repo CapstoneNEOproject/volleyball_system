@@ -1,0 +1,58 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "username": "admin2",
+            "email": "admin2@example.com",
+            "password": "pbkdf2_sha256$870000$wICCeg1olvXVP4qHzF8Hbd$mIwoy/lmIZA+rirlH6qLQbtnOnocJMExMEWc5H1Xz/Y=",
+            "role": "admin"
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "username": "referee1",
+            "email": "referee1@example.com",
+            "password": "pbkdf2_sha256$870000$wICCeg1olvXVP4qHzF8Hbd$mIwoy/lmIZA+rirlH6qLQbtnOnocJMExMEWc5H1Xz/Y=",
+            "role": "referee"
+        }
+    },
+    {
+        "model": "scheduling.team",
+        "pk": 1,
+        "fields": {
+            "name": "Team A"
+        }
+    },
+    {
+        "model": "scheduling.team",
+        "pk": 2,
+        "fields": {
+            "name": "Team B"
+        }
+    },
+    {
+        "model": "scheduling.game",
+        "pk": 1,
+        "fields": {
+            "date": "2024-12-01",
+            "time": "18:00:00",
+            "team1": 1,
+            "team2": 2,
+            "location": "Stadium 1",
+            "referee": 2
+        }
+    },
+    {
+        "model": "analytics.matchresult",
+        "pk": 1,
+        "fields": {
+            "game": 1,
+            "winning_team": 1,
+            "losing_team": 2,
+            "draw": false
+        }
+    }
+]
