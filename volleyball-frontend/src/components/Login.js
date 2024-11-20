@@ -5,39 +5,37 @@ import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState(""); // Updated to username
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async(e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     alert("Login form submitted!");
 
     // Add authentication logic here
-    try{
+    try {
       const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        email,
+        username, // Changed to username
         password,
       });
-      if (response.status === 201){
+      if (response.status === 201) {
         setMessage("Login Successful!");
         setTimeout(() => navigate("/home"), 2000);
       }
-    }catch (error){
-      setMessage("Email or Password incorrect!")
-      console.log("Error during login".error);
-      
+    } catch (error) {
+      setMessage("Username or Password incorrect!");
+      console.log("Error during login:", error);
     }
-    // clearing up the form
-    setEmail("");
+
+    // Clearing up the form
+    setUsername(""); // Updated field
     setPassword("");
     setTimeout(() => {
       setMessage("");
     }, 5000);
-
   };
 
   return (
@@ -47,13 +45,13 @@ const Login = () => {
       <form onSubmit={handleLogin} className="login-form">
         <div className="input-group">
           <input
-            className="email"
-            type="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            className="username" // Updated className
+            type="text" // Updated type
+            value={username} // Updated value
+            onChange={(e) => setUsername(e.target.value)} // Updated field
             required
           />
-          <label htmlFor="">Email</label>
+          <label htmlFor="">Username</label> {/* Updated label */}
         </div>
         <div className="input-group">
           <input
@@ -65,8 +63,14 @@ const Login = () => {
           />
           <label htmlFor="">Password</label>
         </div>
-        <a href="/signup" className="new-account"><i><b>Create new account?</b></i></a>
-        <button type="submit" className="submit-it">Login</button>
+        <a href="/signup" className="new-account">
+          <i>
+            <b>Create new account?</b>
+          </i>
+        </a>
+        <button type="submit" className="submit-it">
+          Login
+        </button>
       </form>
     </div>
   );
