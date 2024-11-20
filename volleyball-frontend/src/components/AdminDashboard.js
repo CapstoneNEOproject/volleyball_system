@@ -7,9 +7,6 @@ const AdminDashboard = () => {
   const [analytics, setAnalytics] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [filter, setFilter] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 5;
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -22,6 +19,7 @@ const AdminDashboard = () => {
             },
           }
         );
+        console.log("Fetched analytics:", response.data); // Debug log
         setAnalytics(response.data);
       } catch (err) {
         console.error("Error fetching admin analytics:", err);
@@ -52,33 +50,11 @@ const AdminDashboard = () => {
     return <p>No analytics data available.</p>;
   }
 
-  // Filtered data
-  const filteredTeams = analytics.teams.filter((team) =>
-    team.team.toLowerCase().includes(filter.toLowerCase())
-  );
-
-  // Pagination logic for teams
-  const indexOfLastRow = currentPage * rowsPerPage;
-  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
-  const currentTeams = filteredTeams.slice(indexOfFirstRow, indexOfLastRow);
-  const totalPages = Math.ceil(filteredTeams.length / rowsPerPage);
-
   return (
     <div className="admin-dashboard">
       <h2>Admin Dashboard</h2>
 
       <h3>Team Analytics</h3>
-
-      {/* Search filter */}
-      <div className="filter-container">
-        <input
-          type="text"
-          placeholder="Search by team name..."
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </div>
-
       <table className="analytics-table">
         <thead>
           <tr>
@@ -91,33 +67,18 @@ const AdminDashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {currentTeams.map((team) => (
+          {analytics?.teams?.map((team) => (
             <tr key={team.team}>
               <td>{team.team}</td>
               <td>{team.total_games}</td>
               <td>{team.wins}</td>
               <td>{team.losses}</td>
-              <td>{team.win_percentage.toFixed(2)}%</td>
+              <td>{team.win_percentage?.toFixed(2)}%</td>
               <td>{team.attendance_count}</td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Pagination for teams */}
-      <div className="pagination-container">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            className={`pagination-button ${
-              currentPage === index + 1 ? "active" : ""
-            }`}
-            onClick={() => setCurrentPage(index + 1)}
-          >
-            {index + 1}
-          </button>
-        ))}
-      </div>
 
       <h3>Referee Analytics</h3>
       <table className="analytics-table">
@@ -129,7 +90,7 @@ const AdminDashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {analytics.referees.map((referee) => (
+          {analytics?.referees?.map((referee) => (
             <tr key={referee.referee}>
               <td>{referee.referee}</td>
               <td>{referee.games_officiated}</td>

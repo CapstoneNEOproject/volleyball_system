@@ -1,10 +1,31 @@
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .serializers import UserSerializer
-from django.contrib.auth.models import User
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        # Add custom claims
+        token['role'] = 'admin' if user.is_superuser else user.role  # Superuser check
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Include role in response data
+        data['role'] = 'admin' if self.user.is_superuser else self.user.role  # Superuser check
+        return data
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 @api_view(['POST'])
@@ -15,19 +36,14 @@ def register_user(request):
     data = request.data
     data['role'] = 'player'  # Default role
 
-    print("Signup Request Data:", data)  # Log request data
-
     serializer = UserSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
-        print("Signup Success:", serializer.data)  # Log success
         return Response(
             {"message": "User registered successfully!", "user": serializer.data},
             status=status.HTTP_201_CREATED,
         )
 
-    # Log validation errors
-    print("Signup Errors:", serializer.errors)
     return Response(
         {"message": "Registration failed", "errors": serializer.errors},
         status=status.HTTP_400_BAD_REQUEST,

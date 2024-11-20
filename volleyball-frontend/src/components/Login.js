@@ -1,41 +1,47 @@
 import React, { useState } from "react";
 import "../PageStyles.css";
-import Signup from "./Signup.js";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [username, setUsername] = useState(""); // Updated to username
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    alert("Login form submitted!");
 
-    // Add authentication logic here
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
-        username, // Changed to username
+      const response = await axios.post("http://127.0.0.1:8000/api/users/login/", {
+        username,
         password,
       });
-      if (response.status === 201) {
+
+      if (response.status === 200) {
+        const { role } = response.data; // Extract role from response
         setMessage("Login Successful!");
-        setTimeout(() => navigate("/home"), 2000);
+
+        // Redirect based on role
+        if (role === "admin") {
+          navigate("/admin-dashboard");
+        } else if (role === "referee") {
+          navigate("/referee-dashboard");
+        } else {
+          navigate("/player-dashboard");
+        }
       }
     } catch (error) {
-      setMessage("Username or Password incorrect!");
-      console.log("Error during login:", error);
+      setMessage("Invalid username or password.");
+      console.error("Error during login:", error.response || error.message);
     }
 
-    // Clearing up the form
-    setUsername(""); // Updated field
+    // Clear input fields
+    setUsername("");
     setPassword("");
-    setTimeout(() => {
-      setMessage("");
-    }, 5000);
+
+    // Clear message after 5 seconds
+    setTimeout(() => setMessage(""), 5000);
   };
 
   return (
@@ -45,13 +51,13 @@ const Login = () => {
       <form onSubmit={handleLogin} className="login-form">
         <div className="input-group">
           <input
-            className="username" // Updated className
-            type="text" // Updated type
-            value={username} // Updated value
-            onChange={(e) => setUsername(e.target.value)} // Updated field
+            className="username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <label htmlFor="">Username</label> {/* Updated label */}
+          <label htmlFor="">Username</label>
         </div>
         <div className="input-group">
           <input
