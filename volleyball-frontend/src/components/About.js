@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../PageStyles.css';
 import MissionImage from '../assets/NEOAthleticsLogo.png'
 import StoryImage from '../assets/founders-image.jpg'
 
 function About() {
+    // Fade-in effect when sections come into view
+    useEffect(() => {
+        const elements = document.querySelectorAll('.fade-element');
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        elements.forEach((el) => observer.observe(el));
+      }, []);
+
     return (
         <div className="page-container">
             <h1 className="about-title">About Us</h1>
@@ -12,7 +28,7 @@ function About() {
                 is a community-driven organization focused on bringing volleyball enthusiasts together for friendly games and competitions.
             </p>
 
-            <div className="section mission-section">
+            <div className="section mission-section fade-element">
                 <div className="text">
                     <h2>Our Mission</h2>
                     <p>
@@ -29,7 +45,7 @@ function About() {
                 </div>
             </div>
 
-            <div className="section story-section">
+            <div className="section story-section fade-element">
                 <div className="image">
                     <img
                         src={StoryImage}

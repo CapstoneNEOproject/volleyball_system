@@ -1,5 +1,5 @@
 import React from "react";
-import Schedule from "./Schedule";
+import Schedule from "./SchedulePage";
 import "../Home.css";
 
 function Home() {
@@ -25,7 +25,7 @@ function Home() {
 
       {/* Features Section */}
       <section className="features">
-        <h2>Features</h2>
+        <h2>Platform Features</h2>
         <div className="feature-cards">
           <div className="feature-card">
             <i className="icon-schedule"></i>
@@ -43,11 +43,6 @@ function Home() {
             <p>Login to customize your player profile and stand out!</p>
           </div>
         </div>
-      </section>
-
-      {/* Schedule Section */}
-      <section className="schedule-section">
-        <Schedule />
       </section>
     </div>
   );
