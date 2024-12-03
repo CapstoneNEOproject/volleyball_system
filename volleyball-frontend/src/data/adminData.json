@@ -1,0 +1,83 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "username": "player1",
+      "role": "player",
+      "email": "player1@example.com",
+      "status": "active"
+    },
+    {
+      "id": 2,
+      "username": "player2",
+      "role": "player",
+      "email": "player2@example.com",
+      "status": "injured"
+    },
+    {
+      "id": 3,
+      "username": "player3",
+      "role": "player",
+      "email": "player3@example.com",
+      "status": "active"
+    },
+    {
+      "id": 4,
+      "username": "player4",
+      "role": "player",
+      "email": "player4@example.com",
+      "status": "inactive"
+    }
+  ],
+  "referees": [
+    {
+      "id": 5,
+      "username": "referee1",
+      "role": "referee",
+      "email": "referee1@example.com",
+      "gamesOfficiated": 5
+    },
+    {
+      "id": 6,
+      "username": "referee2",
+      "role": "referee",
+      "email": "referee2@example.com",
+      "gamesOfficiated": 3
+    }
+  ],
+  "teams": [
+    { "id": 1, "name": "Team A", "members": [1, 2] },
+    { "id": 2, "name": "Team B", "members": [3, 4] },
+    { "id": 3, "name": "Team C", "members": [1, 3] },
+    { "id": 4, "name": "Team D", "members": [2, 4] }
+  ],
+  "games": [
+    {
+      "id": 1,
+      "team1": "Team A",
+      "team2": "Team B",
+      "date": "2024-01-01",
+      "time": "6:00 PM",
+      "location": "Stadium 1",
+      "refereeId": 5
+    },
+    {
+      "id": 2,
+      "team1": "Team C",
+      "team2": "Team D",
+      "date": "2024-01-02",
+      "time": "7:00 PM",
+      "location": "Stadium 2",
+      "refereeId": 6
+    },
+    {
+      "id": 3,
+      "team1": "Team A",
+      "team2": "Team C",
+      "date": "2024-01-03",
+      "time": "5:00 PM",
+      "location": "Stadium 3",
+      "refereeId": 5
+    }
+  ]
+}
